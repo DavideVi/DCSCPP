@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  //- div.jumbotron
+  //-   div.container
+  //-     h1 DCSC Poker Planning
+  //-     a.btn.btn-primary.btn-lg(href="#", role="button", style="margin-right: 10px") Start new session
+  //-     a.btn.btn-primary.btn-lg(href="#", role="button") Join session
+  div.row
+    .col-md-6
+      .panel.panel-primary
+        .panel-heading 
+          .panel-title Start new session
+        .panel-body
+          .form-group
+            form#formAddUser(name="newsession",method="post",action="/api/newsession")
+              label Display name
+              input.form-control#displayName(type="text", placeholder="username", name="username")    
+              hr          
+              button.btn.btn-primary.pull-right#btnSubmit(type="submit") submit
+    .col-md-6
+      .panel.panel-primary
+        .panel-heading 
+          .panel-title Join Existing Session
+        .panel-body
+          .form-group
+            form#formAddUser(name="joinsession",method="get",action="/joinsession")
+              label Display name
+              input.form-control#displayName(type="text", placeholder="Display Name", name="username")
+              label Session ID
+              input.form-control#sessionID(type="text", placeholder="", name="session")
+              hr
+              button.btn.btn-primary.pull-right#btnSubmit(type="submit") submit
+      
+      

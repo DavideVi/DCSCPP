@@ -1,0 +1,127 @@
+$ticket-area-width: 20%;
+$scrum-master-area-height: 10%;
+
+$main-bg: #f0f0f0;
+$panel-bg: #304051;
+$panel-bg-highlighted: #405061;
+$panel-bg-border: #203041;
+$panel-fg: #BEC3c9;
+$accent: #e74e3e;
+
+$highlight-1: #45B96D;
+$highlight-2: #3697DA;
+
+#ticket-area {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: $ticket-area-width;
+
+  background-color: $panel-bg;
+  color: $panel-fg;
+  border-right: 5px solid $accent;
+
+  h1 {
+    padding: 5px;
+  }
+
+  #add-ticket {
+    padding: 20px;
+  }
+
+  ul {
+    padding: 0px;
+    margin: 0px;
+    margin-top: 30px;
+
+    border-top: 1px solid $panel-bg-border;
+
+    li {
+      padding: 10px;
+      list-style: none;
+      border-bottom: 1px solid $panel-bg-border;
+    }
+
+    li:hover {
+      background-color: $panel-bg-highlighted;
+    }
+  }
+}
+
+#cards-area {
+  position: fixed;
+  left: $ticket-area-width;
+  bottom: 0px;
+  right: 0px;
+  height: 20%;
+
+  background-color: $panel-bg;
+  color: $panel-fg;
+  text-align: center;
+}
+
+#current-ticket-area {
+  position: fixed;
+  left: $ticket-area-width;
+  top: 0px;
+  right: 0px;
+  height: $scrum-master-area-height;
+
+  background-color: $panel-bg;
+  color: $panel-fg;
+}
+
+#scrum-master-area {
+  position: fixed;
+  left: $ticket-area-width;
+  top: $scrum-master-area-height;
+  right: 0px;
+  height: 10%;
+
+  background-color: $main-bg;
+  // color: $panel-fg;
+}
+
+.card {
+  width: 120px;
+  height: 168px;
+  margin: 10px;
+  margin-top: 40px;
+  display: inline-block;
+
+  font-size: 32pt;
+  color: #FFF;
+
+  border: 5px solid #FFF;
+
+  text-align: center;
+  vertical-align: middle;
+
+  background-color: $highlight-2;
+}
+
+.card:hover {
+  margin-top: 0px;
+}
+
+// For active cards
+.active {
+  margin-top: 0px;
+}
+
+#play-area {
+  position: fixed;
+  top: 20%;
+  right: 0px;
+  bottom: 20%;
+  left: $ticket-area-width;
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3697da+0,45b96d+100 */
+  background: #3697da; /* Old browsers */
+  background: -moz-linear-gradient(45deg,  #3697da 0%, #45b96d 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg,  #3697da 0%,#45b96d 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg,  #3697da 0%,#45b96d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3697da', endColorstr='#45b96d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}

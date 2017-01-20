@@ -1,0 +1,36 @@
+extends layout
+
+block content
+
+  // Specifying global session_id variable so that the JS controllers may use it
+  script.
+    var session_id = "#{session}";
+
+  // Adding JS controller for user interactions
+  script(src='/controllers/session.js')
+  
+  div#play-area
+  div#ticket-area
+    h1 Tickets
+    div#add-ticket
+      label Paste ticket and click "Add" to add to planning session
+      textarea.form-control#ticket-body-field(rows="4")
+      hr
+      button.btn.btn-success.pull-right#addTicket Add
+    div#tickets
+      ul
+        li
+          p.
+            ADOPP-359 As a user I want a bloody consolidated proxy 
+        li Ticket 2
+  div#cards-area
+    div.card 1
+    div.card 2
+    div.card 3
+    div.card 4
+    div.card 5
+    div.card 6
+  div#current-ticket-area
+    h1 #{username}
+  div#scrum-master-area
+  
