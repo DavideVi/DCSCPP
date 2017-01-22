@@ -7,7 +7,7 @@
 6 silly lifecycle planningpoker@0.0.0~prestart: no script for prestart, continuing
 7 info lifecycle planningpoker@0.0.0~start: planningpoker@0.0.0
 8 verbose lifecycle planningpoker@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle planningpoker@0.0.0~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/davide/Projects/PlanningPoker/node_modules/.bin:/home/davide/bin:/home/davide/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+9 verbose lifecycle planningpoker@0.0.0~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/davide/Projects/PlanningPoker/node_modules/.bin:/home/davide/bin:/home/davide/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/davide/bin/robomongo/bin:/home/davide/bin/Postman
 10 verbose lifecycle planningpoker@0.0.0~start: CWD: /home/davide/Projects/PlanningPoker
 11 silly lifecycle planningpoker@0.0.0~start: Args: [ '-c', 'node ./bin/www' ]
 12 silly lifecycle planningpoker@0.0.0~start: Returned: code: 1  signal: null
