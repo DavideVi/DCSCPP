@@ -1,0 +1,94 @@
+#ticket-area {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 20%;
+  background-color: #304051;
+  color: #BEC3c9;
+  border-right: 5px solid #e74e3e; }
+  #ticket-area h1 {
+    padding: 5px; }
+  #ticket-area #add-ticket {
+    padding: 20px;
+    visibility: hidden;
+    overflow: hidden; }
+  #ticket-area #tickets {
+    overflow: hidden; }
+    #ticket-area #tickets ul {
+      padding: 0px;
+      margin: 0px;
+      margin-top: 30px;
+      border-top: 1px solid #203041; }
+      #ticket-area #tickets ul li {
+        padding: 10px;
+        list-style: none;
+        border-bottom: 1px solid #203041; }
+      #ticket-area #tickets ul li:hover {
+        background-color: #405061; }
+
+#cards-area {
+  position: fixed;
+  left: 20%;
+  bottom: 0px;
+  right: 0px;
+  height: 20%;
+  background-color: #304051;
+  color: #BEC3c9;
+  text-align: center; }
+
+#current-ticket-area {
+  position: fixed;
+  left: 20%;
+  top: 0px;
+  right: 0px;
+  height: 10%;
+  background-color: #304051;
+  color: #BEC3c9; }
+
+#scrum-master-area {
+  position: fixed;
+  left: 20%;
+  top: 10%;
+  right: 0px;
+  height: 10%;
+  background-color: #f0f0f0; }
+
+.card {
+  width: 120px;
+  height: 168px;
+  margin: 10px;
+  margin-top: 40px;
+  display: inline-block;
+  font-size: 32pt;
+  color: #FFF;
+  border: 5px solid #FFF;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #3697DA; }
+
+.card:hover {
+  margin-top: 0px; }
+
+.active {
+  margin-top: 0px; }
+
+#play-area {
+  position: fixed;
+  top: 20%;
+  right: 0px;
+  bottom: 20%;
+  left: 20%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3697da+0,45b96d+100 */
+  background: #3697da;
+  /* Old browsers */
+  background: -moz-linear-gradient(45deg, #3697da 0%, #45b96d 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg, #3697da 0%, #45b96d 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, #3697da 0%, #45b96d 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3697da', endColorstr='#45b96d',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */ }
+
+/*# sourceMappingURL=old-session.css.map */

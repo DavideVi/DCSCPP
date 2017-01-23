@@ -2,35 +2,83 @@ extends layout
 
 block content
 
-  // Specifying global session_id variable so that the JS controllers may use it
+  // Specifying global username and session_id variables 
+  // so that the JS controllers may use it
   script.
+    var username = "#{username}";
     var session_id = "#{session}";
 
   // Adding JS controller for user interactions
   script(src='/controllers/session.js')
+  link(rel='stylesheet', href='/stylesheets/session.css')
   
-  div#play-area
-  div#ticket-area
-    h1 Tickets
-    div#add-ticket
-      label Paste ticket and click "Add" to add to planning session
-      textarea.form-control#ticket-body-field(rows="4")
-      hr
-      button.btn.btn-success.pull-right#addTicket Add
-    div#tickets
-      ul
-        li
-          p.
-            ADOPP-359 As a user I want a bloody consolidated proxy 
-        li Ticket 2
-  div#cards-area
-    div.card 1
-    div.card 2
-    div.card 3
-    div.card 4
-    div.card 5
-    div.card 6
-  div#current-ticket-area
-    h1 #{username}
-  div#scrum-master-area
+  div#content
+    div.row
+      div.col-md-12#details-panel
+        div.panel
+          .panel-body
+            .row
+              .col-md-6
+                p Username: #{username}
+              .col-md-6
+                p Session: #{session}
+    div.row
+      div.col-md-4
+        div#add-tickets-panel
+          div.panel.panel-warning
+            .panel-heading Add ticket
+              div.heading-note.pull-right 
+                span.glyphicon.glyphicon-lock
+                strong SCRUM Master Only
+            .panel-body
+              label Paste ticket and click "Add" to add to planning session
+              textarea.form-control#ticket-body-field(rows="3")
+              button.btn.btn-success.btn-sm.pull-right#btn-add-ticket
+                span.glyphicon.glyphicon-plus
+                span Add
+        div.panel.panel-default#tickets-panel
+          .panel-heading Tickets
+          ul.list-group#tickets-list
+
+      div.col-md-8 
+        div#play-area
+          div.row#scrum-control-panel
+            div.panel.panel-warning
+              .panel-heading Poker Control Panel
+                div.heading-note.pull-right 
+                  span.glyphicon.glyphicon-lock
+                  strong SCRUM Master Only
+              .panel-body
+                .btn-group
+                  button.btn.btn-md.btn-success
+                    span.glyphicon.glyphicon-chevron-left
+                    span Previous Ticket
+                  button.btn.btn-md.btn-success 
+                    span Next Ticket
+                    span.glyphicon.glyphicon-chevron-right
+                button.btn.btn-md.btn-primary.pull-right#vote-toggle
+                  // Don't need as refreshSession() will add content
+                  //- .span.glyphicon.glyphicon-play 
+                  //- Start Voting
+          div.row
+            div.panel.panel-default
+              .panel-body#question-area
+                center ADOPP-359 We want a consolidated proxy
+              .panel-body
+                center#votes-area
+              .panel-footer
+                span.label.label-danger#vote-status-label Wait for SCRUM master to enable voting
+          div.row
+            div.panel.panel-default
+              .panel-body#card-area
+                center
+                  div.card(style="background-color: #000; color: #FFF") Pass
+                  div.card(style="background-color: #228b22; color: #FFF") 1
+                  div.card(style="background-color: #228b22; color: #FFF") 2
+                  div.card(style="background-color: #228b22; color: #FFF") 3
+                  div.card(style="background-color: #228b22; color: #FFF") 5
+                  div.card(style="background-color: #228b22; color: #FFF") 8
+                  div.card(style="background-color: #228b22; color: #FFF") 13
+                  
+        
   

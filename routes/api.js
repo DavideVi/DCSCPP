@@ -13,7 +13,9 @@ router.post('/session/new', function(req, res, next) {
   collection.insert({
     "master": username,
     "tickets": [],
-    "voting": false
+    "voting": false,
+    "users": [],
+    "votes": []
   }, function (err, doc) {
     if (err) {
       return res.status(500).json({"status": "error", "message": "There was a problem creating a session"});
@@ -23,6 +25,62 @@ router.post('/session/new', function(req, res, next) {
     }
   });
 });
+
+router.post('/session/exists', function(req, res, next) {
+
+    if (req.body.session_id === undefined) {
+      return res.status(400).json({"status": "error", "message": "'session_id' has not been set"});
+    }
+
+    var mongo = require('mongodb');
+    var sessionid = new mongo.ObjectID(req.body.session_id);
+    var collection = req.db.get('sessions');
+
+    collection.find({
+      _id: sessionid
+    }, function(err, doc) {
+      if (err) {
+        return res.status(500).json({"status": "error", "message": "Could not check if session exists"});
+      }
+      else {
+        if (doc.length === 0) {
+          return res.json({"status": "ok", "exists": false});
+        }
+        else {
+          return res.json({"status": "ok", "exists": true});
+        }
+      }
+    });
+});
+
+router.post('/session/join', function(req, res, next) {
+
+    if (req.body.session_id === undefined) {
+      return res.status(400).json({"status": "error", "message": "'session_id' has not been set"});
+    }
+    if (req.body.username === undefined) {
+      return res.status(400).json({"error": "'username' has not been set"});
+    }
+
+    var mongo = require('mongodb');
+    var sessionid = new mongo.ObjectID(req.body.session_id);
+    var username = req.body.username;
+    var collection = req.db.get('sessions');
+
+    collection.update({
+      _id: sessionid
+    }, {
+      $push: { users: username }
+    }, function(err, doc) {
+      if (err) {
+        return res.status(500).json({"status": "error", "message": "Could not join session"});
+      }
+      else {
+          return res.json({"status": "ok"});
+      }
+    });
+});
+
 
 router.post('/session/tickets/add', function(req, res, next) {
 
