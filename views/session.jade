@@ -14,14 +14,12 @@ block content
   
   div#content
     div.row
-      div.col-md-12#details-panel
-        div.panel
-          .panel-body
-            .row
-              .col-md-6
-                p Username: #{username}
-              .col-md-6
-                p Session: #{session}
+      div#details-area
+        h1 
+          span.glyphicon.glyphicon-user 
+          span #{username} | #{session}
+        hr
+          
     div.row
       div.col-md-4
         div#add-tickets-panel

@@ -46,6 +46,7 @@ $(document).ready(function() {
                 current_end = "</strong>";
               }
               $("#tickets-list").append("<li class='list-group-item'>"
+                + "<span class='label label-default'>" + (parseInt(ticket_index) + 1) + "</span>"
                 + current_start
                 + info.tickets[ticket_index]
                 + current_end
@@ -227,6 +228,10 @@ $(document).ready(function() {
                     }
                   }
 
+                  // Updating information label for the users
+                  $("#voting-area").removeClass('panel-primary');
+                  $("#voting-area").addClass('panel-danger');
+                  $("#vote-status-label").html("Voting has ended. Wait for re-vote or next ticket");
                 break;
                 // ================================================================
                 // NEXT STATE IS -2-
@@ -282,6 +287,10 @@ $(document).ready(function() {
 
     function submitTicket() {
       var ticket_body = $("#ticket-body-field").val();
+
+      if (ticket_body.length < 5) {
+        return;
+      }
 
       $.post("/api/session/tickets/add",
         {session_id: session_id, ticket_body: ticket_body },

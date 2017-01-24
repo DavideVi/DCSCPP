@@ -15,7 +15,7 @@ body {
 #content {
   max-width: 90%;
   margin: auto;
-  margin-top: 4%; }
+  margin-top: 2%; }
   #content .panel-default .panel-heading {
     background-color: #dadada; }
   #content .panel-warning .glyphicon {
@@ -27,20 +27,17 @@ body {
       font-size: 10pt; }
   #content #btn-add-ticket {
     margin-top: 10px; }
-  #content #details-panel .panel {
-    border-color: #454545; }
-    #content #details-panel .panel .panel-body {
-      background-color: #454545;
-      color: #FFF; }
-  #content #details-panel .row {
-    padding: 0px;
-    margin: 0px; }
-  #content #details-panel .col-md-6 {
-    padding: 0px;
-    margin: 0px; }
-  #content #details-panel p {
-    padding: 0px;
-    margin: 0px; }
+  #content #details-area {
+    padding: 20px;
+    color: #DDD; }
+    #content #details-area span {
+      margin-right: 10px; }
+    #content #details-area h1 {
+      font-size: 20pt; }
+      #content #details-area h1 button {
+        color: #000; }
+    #content #details-area hr {
+      margin: 0px; }
   #content #tickets-panel ul {
     padding: 0px;
     margin: 0px; }
@@ -49,6 +46,8 @@ body {
       border-top: 0px; }
     #content #tickets-panel ul li:hover {
       background-color: #E4E4E4; }
+  #content #tickets-panel .label-default {
+    margin-right: 10px; }
   #content #play-area {
     width: 100%;
     height: 100%; }

@@ -15,7 +15,7 @@ body {
 #content {
   max-width: 90%;
   margin: auto;
-  margin-top: 4%;
+  margin-top: 2%;
 
   .panel-default {
     .panel-heading {
@@ -43,31 +43,25 @@ body {
     margin-top: 10px;
   }
 
-  #details-panel {
-    .panel {
-      border-color: #454545;
+  #details-area {
+    padding: 20px;
 
-      .panel-body {
-        background-color: #454545;
-        color: #FFF;
+    span {
+      margin-right: 10px;
+    }
+    color: #DDD;
+
+    h1 {
+      font-size: 20pt;
+
+      button {
+        color: #000;
       }
     }
 
-    .row {
-      padding: 0px;
+    hr {
       margin: 0px;
     }
-    .col-md-6 {
-      padding: 0px;
-      margin: 0px;
-    }
-    p {
-      padding: 0px;
-      margin: 0px;
-    }
-  }
-
-  #add-tickets-panel {
   }
 
   #tickets-panel {
@@ -83,6 +77,10 @@ body {
         li:hover {
           background-color: #E4E4E4;
         }
+      }
+
+      .label-default {
+        margin-right: 10px;
       }
   }
 
