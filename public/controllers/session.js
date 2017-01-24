@@ -270,7 +270,17 @@ $(document).ready(function() {
 
     // Add ticket functionality
     $("#btn-add-ticket").click(function() {
+      submitTicket();
+    });
 
+    $("#ticket-body-field").keypress(function(event) {
+    	var keycode = (event.keyCode ? event.keyCode : event.which);
+    	if(keycode == '13'){
+        submitTicket();
+    	}
+    });
+
+    function submitTicket() {
       var ticket_body = $("#ticket-body-field").val();
 
       $.post("/api/session/tickets/add",
@@ -283,8 +293,7 @@ $(document).ready(function() {
             }
           }
         });
-
-    });
+    }
 
     $("#vote-toggle").click(function() {
 
