@@ -35,7 +35,7 @@ block content
               textarea.form-control#ticket-body-field(rows="3")
               button.btn.btn-success.btn-sm.pull-right#btn-add-ticket
                 span.glyphicon.glyphicon-plus
-                span Add
+                span Add Ticket
         div.panel.panel-default#tickets-panel
           .panel-heading Tickets
           ul.list-group#tickets-list
@@ -50,10 +50,10 @@ block content
                   strong SCRUM Master Only
               .panel-body
                 .btn-group
-                  button.btn.btn-md.btn-success
+                  button.btn.btn-md.btn-success#prev-ticket(disabled)
                     span.glyphicon.glyphicon-chevron-left
                     span Previous Ticket
-                  button.btn.btn-md.btn-success 
+                  button.btn.btn-md.btn-success#next-ticket(disabled)
                     span Next Ticket
                     span.glyphicon.glyphicon-chevron-right
                 button.btn.btn-md.btn-primary.pull-right#vote-toggle
@@ -61,24 +61,25 @@ block content
                   //- .span.glyphicon.glyphicon-play 
                   //- Start Voting
           div.row
-            div.panel.panel-default
+            div.panel.panel-danger#voting-area
+              .panel-heading
+                span#vote-status-label Wait for SCRUM master to enable voting
               .panel-body#question-area
-                center ADOPP-359 We want a consolidated proxy
+                center
+                  span#question-label No ticket has been selected yet
               .panel-body
                 center#votes-area
-              .panel-footer
-                span.label.label-danger#vote-status-label Wait for SCRUM master to enable voting
           div.row
             div.panel.panel-default
               .panel-body#card-area
                 center
-                  div.card(style="background-color: #000; color: #FFF") Pass
-                  div.card(style="background-color: #228b22; color: #FFF") 1
-                  div.card(style="background-color: #228b22; color: #FFF") 2
-                  div.card(style="background-color: #228b22; color: #FFF") 3
-                  div.card(style="background-color: #228b22; color: #FFF") 5
-                  div.card(style="background-color: #228b22; color: #FFF") 8
-                  div.card(style="background-color: #228b22; color: #FFF") 13
+                  div.vote-card.card.card-Pass Pass
+                  div.vote-card.card.card-1 1
+                  div.vote-card.card.card-2 2
+                  div.vote-card.card.card-3 3
+                  div.vote-card.card.card-5 5
+                  div.vote-card.card.card-8 8
+                  div.vote-card.card.card-13 13
                   
         
   

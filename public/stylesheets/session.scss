@@ -25,7 +25,8 @@ body {
 
   .panel-warning {
     .glyphicon {
-      margin-right: 5px;
+      margin-right: 2.5px;
+      margin-left: 2.5px;
     }
   }
 
@@ -96,6 +97,19 @@ body {
 
   #play-area {
 
+    #question-area {
+      background-color: #E8E8E8;
+    }
+
+    .panel-danger {
+        border-color: #c9302c;
+    }
+
+    .panel-danger .panel-heading {
+      background-color: #c9302c;
+      color: #FFF;
+    }
+
     .vote {
       display: inline-block;
     }
@@ -111,6 +125,26 @@ body {
       font-weight: bold;
       display: inline-block;
       border: 3px solid #AAA;
+      cursor: pointer;
+    }
+
+    .card-voted {
+      background-color: #ffa500;
+    }
+
+    .card-not-voted {
+      background-color: #990000;
+      color: #FFF;
+    }
+
+    .card-1, .card-2, .card-3, .card-5, .card-8, .card-13  {
+      background-color: #228b22;
+      color: #FFF;
+    }
+
+    .card-Pass {
+      background-color: #000;
+      color: #fff;
     }
   }
 

@@ -129,46 +129,74 @@ router.post('/session/tickets/set', function(req, res, next) {
 
     var collection = req.db.get('sessions');
 
-    collection.col.aggregate(
-      [
-        {
-          $match: {
-            "_id": sessionid
-          }
-        },
-        {
-          $project: {
-            numberOfTickets: { $size: "$tickets" }
-          }
-        }
-      ],
-      function(err, doc) {
-        if (err) {
-          return res.status(500).json({"status": "error", "message": "There was a problem setting the current ticket"});
+    collection.find({
+      _id: sessionid,
+      voting: true
+    },
+    function(err, doc) {
+      if (err) {
+
+      }
+      else {
+        if (doc.length > 0) {
+          return res.status(409).json({"status": "error", "message": "Cannot change question while voting is enabled"});
         }
         else {
-          if (doc[0].numberOfTickets <= ticket_index) {
-            return res.status(400).json({"status": "error", "message": "`ticket_index` exceeds number of tickets (" + doc[0].numberOfTickets + ")"});
-          }
-          else {
-              collection.update(
-                { _id: sessionid },
-                { $set: { current_index: ticket_index }},
-                function (err, doc) {
+
+            // Removing all previous votes
+            collection.update(
+              { _id: sessionid },
+              { $set: { votes: [] } },
+              function(err, doc) {
                   if (err) {
                     return res.status(500).json({"status": "error", "message": "There was a problem setting the current ticket"});
                   }
                   else {
-                    return res.json({"status": "ok"});
-                  }
-                }
-              );
-          }
+
+                      collection.col.aggregate(
+                        [
+                          {
+                            $match: {
+                              "_id": sessionid
+                            }
+                          },
+                          {
+                            $project: {
+                              numberOfTickets: { $size: "$tickets" }
+                            }
+                          }
+                        ],
+                        function(err, doc) {
+                          if (err) {
+                            return res.status(500).json({"status": "error", "message": "There was a problem setting the current ticket"});
+                          }
+                          else {
+                            if (doc[0].numberOfTickets <= ticket_index) {
+                              return res.status(400).json({"status": "error", "message": "`ticket_index` exceeds number of tickets (" + doc[0].numberOfTickets + ")"});
+                            }
+                            else {
+                                collection.update(
+                                  { _id: sessionid },
+                                  { $set: { current_index: ticket_index }},
+                                  function (err, doc) {
+                                    if (err) {
+                                      return res.status(500).json({"status": "error", "message": "There was a problem setting the current ticket"});
+                                    }
+                                    else {
+                                      return res.json({"status": "ok"});
+                                    }
+                                  }
+                                );
+                            }
+                          }
+                        }
+                      ); // collection.col.aggregate
+                  } // else
+              } // collection.update callback
+            ); // collection.update
         }
       }
-    );
-
-
+    });
 });
 
 router.post('/session/vote/start', function(req, res, next) {
@@ -183,17 +211,28 @@ router.post('/session/vote/start', function(req, res, next) {
 
     var collection = req.db.get('sessions');
 
+    // Removing all previous votes
     collection.update(
       { _id: sessionid },
-      { $set: { voting: true } }
-    , function (err, doc) {
-      if (err) {
-        return res.status(500).json({"status": "error", "message": "There was a problem enabling voting for the current ticket"});
-      }
-      else {
-        return res.json({"status": "ok"});
-      }
-    });
+      { $set: { votes: [] } },
+      function(err, doc) {
+          if (err) {
+            return res.status(500).json({"status": "error", "message": "There was a problem setting the current ticket"});
+          }
+          else {
+            collection.update(
+              { _id: sessionid },
+              { $set: { voting: true } }
+            , function (err, doc) {
+              if (err) {
+                return res.status(500).json({"status": "error", "message": "There was a problem enabling voting for the current ticket"});
+              }
+              else {
+                return res.json({"status": "ok"});
+              }
+            });
+          }
+      });
 });
 
 router.post('/session/vote/end', function(req, res, next) {
@@ -270,7 +309,7 @@ router.post('/session/vote/submit', function(req, res, next) {
             $push: {
               votes: {
                 username: username,
-                vote: vote
+                vote: "" + vote
               }
             }
           }, function(err, doc) {
