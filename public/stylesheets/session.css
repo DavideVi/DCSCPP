@@ -55,6 +55,8 @@ body {
     font-size: 20pt; }
   #content #play-area #question-area {
     background-color: #E8E8E8; }
+  #content #play-area #card-area {
+    background-color: #E8E8E8; }
   #content #play-area .panel-danger {
     border-color: #c9302c; }
   #content #play-area .panel-danger .panel-heading {

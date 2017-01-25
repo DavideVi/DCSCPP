@@ -287,29 +287,31 @@ router.post('/session/vote/submit', function(req, res, next) {
     // one the vote was submitted for
     var collection = req.db.get('sessions');
 
+    // Making sure user had joined session and is voting for the right ticket
     collection.find({
       _id: sessionid,
-      current_index: ticket_index
+      current_index: ticket_index,
+      users: username
     }, function(err, doc) {
       if (err) {
         return res.status(500).json({"status": "error", "message": "There was a problem submitting the vote for the current ticket"});
       }
       else {
         if (doc.length === 0) {
-          return res.status(400).json({"status": "error", "message": "'ticket_index' might not match `current_index`."});
+          return res.status(400).json({"status": "error", "message": "'ticket_index' might not match `current_index` or you have not officially joined this session."});
         }
         else if (doc[0].voting === false) {
           return res.status(409).json({"status": "error", "message": "Cannot submit vote if voting has not been started"});
         }
         else {
+          // Removing any existing votes
           collection.update({
               _id: sessionid,
               current_index: ticket_index
           },{
-            $push: {
+            $pull: {
               votes: {
                 username: username,
-                vote: "" + vote
               }
             }
           }, function(err, doc) {
@@ -317,7 +319,25 @@ router.post('/session/vote/submit', function(req, res, next) {
               return res.status(500).json({"status": "error", "message": "There was a problem submitting the vote for the current ticket"});
             }
             else {
-              return res.json({"status": "ok"});
+              // Finally adding the vote
+              collection.update({
+                  _id: sessionid,
+                  current_index: ticket_index
+              },{
+                $push: {
+                  votes: {
+                    username: username,
+                    vote: "" + vote
+                  }
+                }
+              }, function(err, doc) {
+                if (err) {
+                  return res.status(500).json({"status": "error", "message": "There was a problem submitting the vote for the current ticket"});
+                }
+                else {
+                  return res.json({"status": "ok"});
+                }
+              });
             }
           });
         } // else
