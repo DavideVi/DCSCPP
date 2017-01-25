@@ -17,6 +17,8 @@ $(document).ready(function() {
 
             var info = data[0];
 
+            console.log(info);
+            
             // Updating current ticket index
             if (info.current_index !== undefined) {
               current_ticket = info.current_index;

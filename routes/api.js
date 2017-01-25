@@ -280,7 +280,7 @@ router.post('/session/vote/submit', function(req, res, next) {
     var mongo = require('mongodb');
     var sessionid = new mongo.ObjectID(req.body.session_id);
     var ticket_index = parseInt(req.body.ticket_index);
-    var vote = parseInt(req.body.vote);
+    var vote = req.body.vote;
     var username = req.body.username;
 
     // Checking if voting is enabled and if current index matches the
@@ -327,7 +327,7 @@ router.post('/session/vote/submit', function(req, res, next) {
                 $push: {
                   votes: {
                     username: username,
-                    vote: "" + vote
+                    vote: vote
                   }
                 }
               }, function(err, doc) {
