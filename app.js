@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/poker');
+var db = monk('database:27017/poker');
 
 var index = require('./routes/index');
 var api = require('./routes/api');
